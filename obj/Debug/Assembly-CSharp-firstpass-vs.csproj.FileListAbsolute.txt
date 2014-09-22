@@ -1,0 +1,11 @@
+C:\Users\Marco\Downloads\Maze\Maze\Temp\bin\Debug\Assembly-CSharp-firstpass.dll
+C:\Users\Marco\Downloads\Maze\Maze\Temp\bin\Debug\Assembly-CSharp-firstpass.pdb
+C:\Users\Marco\Downloads\Maze\Maze\Temp\bin\Debug\UnityEditor.dll
+C:\Users\Marco\Downloads\Maze\Maze\Temp\bin\Debug\UnityEngine.dll
+C:\Users\Marco\Downloads\Maze\Maze\Temp\bin\Debug\Mono.Cecil.dll
+C:\Users\Marco\Downloads\Maze\Maze\Temp\bin\Debug\nunit.framework.dll
+C:\Users\Marco\Downloads\Maze\Maze\Temp\bin\Debug\Unity.DataContract.dll
+C:\Users\Marco\Downloads\Maze\Maze\Temp\bin\Debug\ICSharpCode.NRefactory.dll
+C:\Users\Marco\Downloads\Maze\Maze\obj\Debug\Assembly-CSharp-firstpass-vs.csprojResolveAssemblyReference.cache
+C:\Users\Marco\Downloads\Maze\Maze\obj\Debug\Assembly-CSharp-firstpass.dll
+C:\Users\Marco\Downloads\Maze\Maze\obj\Debug\Assembly-CSharp-firstpass.pdb

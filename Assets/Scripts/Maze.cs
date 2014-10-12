@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 public class Maze : MonoBehaviour {
 
@@ -21,14 +22,20 @@ public class Maze : MonoBehaviour {
 
     private MazePos mazePos;
 
+    List<Vector2> erasedWalls;
     Maze(MazePos mazePos)
     {
+        erasedWalls = new List<Vector2>();
         this.mazePos = mazePos;
+    }
+    Maze()
+    {
+        erasedWalls = new List<Vector2>();
     }
 
 	// Use this for initialization
 	void Start () {
-	
+       
 	}
 	
 	// Update is called once per frame
@@ -135,12 +142,79 @@ public class Maze : MonoBehaviour {
     {
         get
         {
-            return new IntVector2(Random.Range(0, size.x), Random.Range(0, size.z));
+            return new IntVector2(UnityEngine.Random.Range(0, size.x), UnityEngine.Random.Range(0, size.z));
         }
     }
 
     public bool ContainsCoordinates(IntVector2 coordinate)
     {
         return coordinate.x >= 0 && coordinate.x < size.x && coordinate.z >= 0 && coordinate.z < size.z;
+    }
+    internal void borrarParedCentralFija()
+    {
+        eraseWall(0, (int)Math.Round(((double)size.z / 2.0)));
+        
+    }
+
+    private void eraseWall(int x, int y)
+    {
+
+        MazeDirection direccionABuscar;
+        if (x == 0 )
+            direccionABuscar = MazeDirection.West;
+        else if (x == size.x-1)
+            direccionABuscar = MazeDirection.East;
+        else if (y==0)
+            direccionABuscar = MazeDirection.South;
+        else //if (y == size.z -1)
+            direccionABuscar = MazeDirection.North;
+
+        foreach (Transform child in cells[x, y].transform)
+        {
+            var mazeWall = child.gameObject.GetComponent<MazeWall>();
+            if (mazeWall == null)
+                continue;
+
+            if (mazeWall.direction == direccionABuscar)
+            {
+                var pared = mazeWall.transform.gameObject;
+                transform.parent = null;
+                Destroy(pared);
+            }
+        }
+
+        erasedWalls.Add(new Vector2(x, y));
+    }
+    
+    internal void borrarParedAleatoria()
+    {
+        System.Random rnd = new System.Random();
+        int valorAFijar = rnd.Next(1, 4);//rnd.Next(0, 4);
+        int x = 0;
+        int y = 0;
+        do
+        {
+            x = rnd.Next(0, size.x);
+            y = rnd.Next(0, size.z);
+        }
+        while(erasedWalls.FindAll(pared => pared.x == x && pared.y == y).Count != 0);
+
+        switch (valorAFijar)
+        {
+            case 0:
+                x = 0;
+                break;
+            case 1:
+                x= size.x-1;
+                break;
+            case 2:
+                y =0;
+                break;
+            case 3:
+            default:
+                y=size.z-1;
+                break;
+        }
+        eraseWall(x, y);
     }
 }

@@ -49,7 +49,9 @@ public class GameManager : MonoBehaviour
         mazeInstanceCeil.transform.Translate(new Vector3(0, 5, 0));
         mazeInstanceCeil.transform.Rotate(transform.right, 180f);
 
-
+        mazeInstanceFloor.borrarParedCentralFija();
+        mazeInstanceFloor.borrarParedAleatoria();
+        mazeInstanceFloor.borrarParedAleatoria();
     }
 
     private void RestartGame() 
